@@ -11,7 +11,7 @@ def registration(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             recipient = form.cleaned_data.get('email')
-            send_email = ("Welcome To Winfred Ecommerce !", "We very delighted to have you.", "We very delighted to have you.", settings.EMAIL_HOST_USER, recipient)
+            send_mail = ("Welcome To Winfred Ecommerce !", "We very delighted to have you.", "We very delighted to have you.", settings.EMAIL_HOST_USER, recipient)
             form.save()
             return redirect('login')
     else:
