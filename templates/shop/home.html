@@ -1,0 +1,18 @@
+{% extends './index.html' %}
+{% load static %}
+<div class="row">
+    {% for product in products %}
+        <div class="col-md-3">
+            <div class="card">
+                <img src="{{product.feature_image.url}}"  class="card-img-top">
+                <div class="card-body">
+                    <div class="card-title">{{product.title}}</div>
+                    <div class="card-text">{{product.price}}</div>
+                    <a href="{% url 'detail' product.id %}" class="btn btn-warning">View Item</a>
+                    <button id="{{product.id}}" href="#" class="btn atc btn-warning">Add To Cart</button>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>

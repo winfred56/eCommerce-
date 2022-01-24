@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'users',
+    'shop',
 ]
 
 MIDDLEWARE = [
@@ -122,7 +123,14 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
+
 CRISPY_TEMPLATE_PACK = 'uni_form'
+
+LOGIN_REDIRECT_URL = 'home'
+LOGIN_URL = 'home'
 
 import os
 
