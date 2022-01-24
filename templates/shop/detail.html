@@ -9,13 +9,23 @@
         {% for image in product.image_set.all %}
             <img class="img-responsive" src={{image.image.url}} width='100px'>
         {% endfor %}
+        {% if product.color %}
         <h4>Available Colors</h4>
+        {% endif %}
         {% for color in product.color_set.all %}
             <p>{{color.color}}</p>
         {% endfor %}
+        {% if product.color %}
         <h4>Available Sizes</h4>
+        {% endif %}
         {% for size in product.size_set.all %}
             <p>{{size.size}}</p>
         {% endfor %}
+        {% if product.color == None %}
+        <h4>No avialable colors</h4>
+        {% endif %}
+        {% if product.size == None %}
+        <h4>No avialable Sizes</h4>
+        {% endif %}
     </div>
 {% endblock content %}
