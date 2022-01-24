@@ -14,7 +14,6 @@ def detail(request, id):
 
     context = {
         'product':product,
-        
     }
 
     return render(request, 'shop/detail.html', context)

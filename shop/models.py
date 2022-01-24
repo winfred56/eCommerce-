@@ -15,16 +15,19 @@ class Image(models.Model):
     image = models.ImageField(upload_to='images/')
     product = models.ForeignKey('Product', on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"{self.product.name}'s image"
+
 class Color(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     color = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
-        return self.color
+        return f"{self.product.name}' color"
 
 class Size(models.Model):
     product = models.ForeignKey(Product ,on_delete=models.CASCADE)
     size = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
-        return self.size
+        return f"{self.product.name}' size"
