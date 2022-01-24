@@ -6,8 +6,8 @@
         <h4>{{product.name}}</h4>
         <p>{{product.price}}</p>
         <p>{{product.description}}</p>
-        {% for image in images %}
-            <img class="img-responsive" src={{product.other_image.url}} width='100px'>
+        {% for image in product.image_set.all %}
+            <img class="img-responsive" src={{image.image.url}} width='100px'>
         {% endfor %}
         <a href='#'>add to cart</a>
     </div>
