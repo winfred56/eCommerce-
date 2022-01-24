@@ -1,16 +1,21 @@
 from dataclasses import Field
 from itertools import product
-from pyexpat import model
-from random import choice
-from ssl import Options
-from turtle import color
+
+
+
 from django.db import models
 
 class Color(models.Model):
     color = models.CharField(max_length=100, null=True, blank= True)
 
+    def __str__(self):
+        return self.color
+
 class Size(models.Model):
     size = models.CharField(max_length=100, null=True, blank=True)
+
+    def __str__(self):
+        return self.size
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
@@ -23,7 +28,6 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
-
 
 class Image(models.Model):
     image = models.ImageField(upload_to='images/')
