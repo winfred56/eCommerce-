@@ -7,7 +7,8 @@ from PIL import Image
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE)
     #uploads all the profile picture images to 'profile_imgs' folder
-    profile_img = models.ImageField(upload_to='profile_imgs', default='default.jpg')
+    profile_img = models.ImageField(upload_to='profile_imgs', default='default/default.jpg')
+
 
     def __str__(self):
         return f"{self.user.username}'s profile"
@@ -16,8 +17,21 @@ class Profile(models.Model):
     def save(self):
         super().save()
 
-        img = Image.open(self.image.path)
+        img = Image.open(self.profile_img.path)
         if img.height > 300 or img.width > 300:
             output_size = (300,300)
             img.thumbnail(output_size)
-            img.save(self.image.path)
+            img.save(self.profile_img.path)
+
+class Address(models.Model):
+    address = models.ForeignKey( Profile, on_delete=models.SET_NULL, null=True)
+    address_line_1 = models.CharField(max_length=150)
+    address_line_2 = models.CharField(max_length=150)
+    address_line_3 = models.CharField(max_length=150)
+
+
+    class Meta:
+        verbose_name = 'Address'
+        verbose_name_plural = 'Address'
+
+
