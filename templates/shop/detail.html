@@ -15,7 +15,7 @@
         {% for color in product.color_set.all %}
             <p>{{color.color}}</p>
         {% endfor %}
-        {% if product.color %}
+        {% if product.size %}
         <h4>Available Sizes</h4>
         {% endif %}
         {% for size in product.size_set.all %}

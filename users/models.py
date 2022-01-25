@@ -9,7 +9,6 @@ class Profile(models.Model):
     #uploads all the profile picture images to 'profile_imgs' folder
     profile_img = models.ImageField(upload_to='profile_imgs', default='default/default.jpg')
 
-
     def __str__(self):
         return f"{self.user.username}'s profile"
 
@@ -26,8 +25,8 @@ class Profile(models.Model):
 class Address(models.Model):
     address = models.ForeignKey( Profile, on_delete=models.SET_NULL, null=True)
     address_line_1 = models.CharField(max_length=150)
-    address_line_2 = models.CharField(max_length=150)
-    address_line_3 = models.CharField(max_length=150)
+    city = models.CharField(max_length=150)
+    country = models.CharField(max_length=150)
 
 
     class Meta:

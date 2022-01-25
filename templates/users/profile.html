@@ -1,0 +1,17 @@
+{% extends '../shop/index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class='container'>
+        <h3>{{user.username}}</h3>
+    </div>
+    <div class='container'>
+        <img src="{{profile.profile_img.url}}" alt='profile picture'>
+    </div>
+    {% if profile.address_line_1 %}
+    <div class='container'>
+        <p>{{address.address_line_1}}</p>
+    </div>
+    {% else %}
+    <p>No Addresses</p>
+    {% endif %}
+{% endblock content %}

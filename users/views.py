@@ -19,3 +19,10 @@ def registration(request):
 
     return render(request, 'users/registration.html', {'form':form})
 
+def profile(request):
+    profile = Profile.objects.all()
+    context={
+        'profile':profile
+    }
+    return render(request,'users/profile.html', context)
+
