@@ -4,7 +4,7 @@
     <div class='container'>
         <img class="img-responsive" src={{product.feature_image.url}} width='300px'>
         <h4>{{product.name}}</h4>
-        <p>{{product.price}} </p> <a href='#'>add to cart</a>
+        <p>{{product.price}} </p> <a id="{{product.id}}" href='{% url 'add' product.id %}'>add to cart</a>
         <p>{{product.description}}</p>
         {% for image in product.image_set.all %}
             <img class="img-responsive" src={{image.image.url}} width='100px'>

@@ -1,6 +1,6 @@
-from email.mime import image
-from django.shortcuts import render
-from .models import Product, Image
+
+from django.shortcuts import render,redirect,get_object_or_404
+from .models import Product, Cart
 
 def home(request):
     products = Product.objects.all()
@@ -17,3 +17,14 @@ def detail(request, id):
     }
 
     return render(request, 'shop/detail.html', context)
+
+def add(request,id):
+        if request.user.is_authenticated():
+            product = get_object_or_404(Product, id)
+        else :
+            cart = get_object_or_404(Cart, user=request.user)
+            cart = Cart.objects.create(user = request.user)
+            cart.save()
+            cart.add_to_cart(id)
+            return redirect('cart')
+        
