@@ -34,9 +34,26 @@ def add(request, id):
             cart_item.quantity += 1
             cart_item.save()
         else:
-            cart.product.add(cart_item)
+            cart.products.add(cart_item)
     else:
         #ordered_date = timezone.now()
         cart = Cart.objects.create(user=request.user)
         cart.products.add(cart_item)
-    return redirect("product", id)
+    return redirect("home")
+
+def remove(request, id):
+    #Get the product to be added to the cart
+    product = get_object_or_404(Product, id=id)
+    cart_ = Cart.objects.filter(user=request.user, ordered = False)
+    if cart_.exists():
+        cart = cart_[0]
+        if cart.products.filter(product__id=product.id).exists():
+            cart_item = CartItem.objects.filter(product=product, user=request.user, ordered=False)[0]
+            cart_item.product.remove(cart_item)
+            return redirect('home')
+        else:
+            return redirect('home')
+    else:
+        return redirect('home')
+
+    return redirect("home")
